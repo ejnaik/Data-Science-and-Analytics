@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 1 — People Analytics & The Data Analysis Process</title>
+<style>
+  :root {
+    --bg: #fbfaf8;
+    --ink: #1c1a17;
+    --ink-soft: #534d44;
+    --rule: #ddd8cf;
+    --accent: #8a5a2b;
+    --accent-soft: #f1e6d8;
+    --mono-bg: #f4f1ea;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 64px 28px 100px;
+  }
+
+  /* ---- Header ---- */
+  .doc-label {
+    font-family: "Courier New", monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-size: 2.4rem;
+    line-height: 1.15;
+    margin: 0 0 14px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .meta {
+    font-family: "Courier New", monospace;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
+
+  .meta span { white-space: nowrap; }
+
+  hr.top {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 0 0 40px;
+  }
+
+  /* ---- Section headings ---- */
+  h2 {
+    font-size: 1.35rem;
+    margin: 56px 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  h3.step {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    font-size: 1.15rem;
+    margin: 40px 0 12px;
+  }
+
+  h3.step .num {
+    font-family: "Courier New", monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  p { margin: 0 0 16px; color: var(--ink); }
+  ul, ol { margin: 0 0 16px; padding-left: 22px; }
+  li { margin-bottom: 6px; }
+
+  /* ---- Quote / definition callout ---- */
+  blockquote {
+    margin: 20px 0;
+    padding: 14px 20px;
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    border-radius: 2px;
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+  blockquote p:last-child { margin-bottom: 0; }
+
+  /* ---- Note box ---- */
+  .note {
+    margin: 18px 0;
+    padding: 12px 18px;
+    background: var(--mono-bg);
+    border-radius: 4px;
+    font-size: 0.95rem;
+  }
+  .note strong {
+    font-family: "Courier New", monospace;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /* ---- Table ---- */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 24px;
+    font-size: 0.95rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+  th {
+    font-family: "Courier New", monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink-soft);
+    border-bottom: 2px solid var(--ink);
+  }
+  tr:last-child td { border-bottom: none; }
+
+  /* ---- Divider ---- */
+  .divider {
+    border: none;
+    border-top: 1px dashed var(--rule);
+    margin: 44px 0;
+  }
+
+  /* ---- Footer ---- */
+  footer {
+    margin-top: 70px;
+    padding-top: 18px;
+    border-top: 1px solid var(--rule);
+    font-family: "Courier New", monospace;
+    font-size: 12px;
+    color: var(--ink-soft);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 600px) {
+    .page { padding: 40px 18px 70px; }
+    h1 { font-size: 1.9rem; }
+    footer { flex-direction: column; gap: 6px; }
+  }
+
+  ::selection { background: var(--accent-soft); }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="doc-label">Data Analytics Notes — Ch. 01</div>
+  <h1>People Analytics &amp; The Data Analysis Process</h1>
+  <div class="meta">
+    <span>Topic: Applying the six-step process to HR</span>
+    <span>Tags: data-analytics · people-analytics · case-study</span>
+  </div>
+  <hr class="top">
+
+  <h2>Overview</h2>
+  <p>
+    Data is everywhere. Every time you observe and evaluate something, you're
+    collecting and analyzing data. This habit helps you:
+  </p>
+  <ul>
+    <li>Find easier ways of doing things</li>
+    <li>Identify patterns that save time</li>
+    <li>Discover new perspectives</li>
+  </ul>
+  <p>
+    This chapter walks through a real-world case study of a team using the
+    six steps of data analysis to solve an HR problem.
+  </p>
+
+  <h2>What Is People Analytics?</h2>
+  <blockquote>
+    <p>
+      People analytics (also called HR or workforce analytics) is the
+      practice of collecting and analyzing workforce data to improve how a
+      company operates.
+    </p>
+  </blockquote>
+  <p>A people analyst's goals:</p>
+  <ul>
+    <li>Understand employees' work experience</li>
+    <li>Build a more productive, fair workplace</li>
+    <li>Improve retention and engagement</li>
+  </ul>
+
+  <h2>The Six Steps of Data Analysis</h2>
+  <table>
+    <thead>
+      <tr><th>#</th><th>Step</th><th>Purpose</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>Ask</td><td>Define the problem and success criteria</td></tr>
+      <tr><td>2</td><td>Prepare</td><td>Plan timeline, sources, and access rules</td></tr>
+      <tr><td>3</td><td>Process</td><td>Collect, clean, and secure data</td></tr>
+      <tr><td>4</td><td>Analyze</td><td>Find patterns and insights</td></tr>
+      <tr><td>5</td><td>Share</td><td>Communicate findings to stakeholders</td></tr>
+      <tr><td>6</td><td>Act</td><td>Implement changes</td></tr>
+    </tbody>
+  </table>
+
+  <hr class="divider">
+
+  <h2>Case Study: Reducing New-Hire Turnover</h2>
+  <p><strong>Problem:</strong> High turnover — many employees left before completing their first year.</p>
+  <p><strong>Question:</strong> <em>How can the organization improve retention for new employees?</em></p>
+
+  <h3 class="step"><span class="num">1</span> Ask</h3>
+  <p>The team worked with leaders to define success. Questions asked:</p>
+  <ul>
+    <li>What do new hires need to succeed in year one?</li>
+    <li>Is historical survey data available?</li>
+    <li>Do high-retention managers offer something different?</li>
+    <li>What's the leading cause of dissatisfaction?</li>
+    <li>What retention increase is expected next year?</li>
+  </ul>
+
+  <h3 class="step"><span class="num">2</span> Prepare</h3>
+  <p>A three-month timeline was set. Data would come from an online survey of new employees.</p>
+  <ul>
+    <li>Drafted questions on hiring, onboarding, and compensation satisfaction</li>
+    <li>Set access rules: raw data restricted; only aggregated data (e.g., salary ranges) shared externally</li>
+    <li>Finalized what to collect and how to visualize it</li>
+    <li>Identified risks in advance</li>
+  </ul>
+
+  <h3 class="step"><span class="num">3</span> Process</h3>
+  <p>Survey sent out — with consent and transparency as priorities.</p>
+  <ul>
+    <li>Restricted data access to a small group of analysts</li>
+    <li>Cleaned data for completeness and accuracy</li>
+    <li>Stored raw data in a secure internal warehouse</li>
+  </ul>
+  <div class="note">
+    <strong>Note</strong>
+    Ethical handling builds trust for future data collection.
+  </div>
+
+  <h3 class="step"><span class="num">4</span> Analyze</h3>
+  <table>
+    <thead><tr><th>Finding</th><th>Outcome</th></tr></thead>
+    <tbody>
+      <tr><td>Long, complicated hiring process</td><td>More likely to leave</td></tr>
+      <tr><td>Efficient, transparent feedback process</td><td>More likely to stay</td></tr>
+    </tbody>
+  </table>
+  <p>All findings were documented, even unflattering ones, to maintain credibility.</p>
+
+  <h3 class="step"><span class="num">5</span> Share</h3>
+  <ul>
+    <li>Report shared only with managers meeting a minimum response threshold</li>
+    <li>Results presented to managers first</li>
+    <li>Managers personally delivered results to their own teams</li>
+  </ul>
+  <p>This gave managers context for productive team conversations.</p>
+
+  <h3 class="step"><span class="num">6</span> Act</h3>
+  <p>Recommendations implemented:</p>
+  <ol>
+    <li>Standardize hiring and evaluation around the most efficient practices</li>
+    <li>Repeat the survey annually for year-over-year comparison</li>
+  </ol>
+  <div class="note">
+    <strong>Result</strong>
+    A year later, retention improved — the action plan worked.
+  </div>
+
+  <hr class="divider">
+
+  <h2>Is People Analytics Right for You?</h2>
+  <p>
+    Data analytics stays interesting because every problem is different,
+    solutions take creativity, and the impact on people can be significant.
+  </p>
+  <div class="note">
+    <strong>Action item</strong>
+    Note "people analytics" as a field worth exploring further.
+  </div>
+
+  <h2>Key Takeaways</h2>
+  <ul>
+    <li>People analytics applies the six-step process to HR challenges</li>
+    <li>Ethics and consent are non-negotiable</li>
+    <li>Transparent hiring and evaluation correlates with retention</li>
+    <li>Sharing through managers drives better action</li>
+    <li>Repeat measurement validates long-term impact</li>
+  </ul>
+
+  <footer>
+    <span>Data Analytics Notes Series</span>
+    <span>Chapter 01</span>
+  </footer>
+
+</div>
+</body>
+</html>
